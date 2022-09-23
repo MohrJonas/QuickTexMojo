@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>QuickTexPlugin</artifactId>
+    <artifactId>quick-tex-maven-plugin</artifactId>
     <groupId>mohr.jonas</groupId>
-    <version>1.0.6</version>
+    <version>1.0.10-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
-    <name>QuickTexPlugin</name>
+    <name>QuickTex Maven Plugin</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,6 +16,13 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>private-repo</id>
+            <url>http://192.168.178.80:9000</url>
+        </repository>
+    </distributionManagement>
 
     <repositories>
         <repository>
@@ -72,6 +77,21 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M6</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -102,13 +122,18 @@
         <dependency>
             <groupId>mohr.jonas</groupId>
             <artifactId>QuickTex</artifactId>
-            <version>0.8.0</version>
+            <version>0.8.3</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.eclipsesource.minimal-json/minimal-json -->
         <dependency>
             <groupId>com.eclipsesource.minimal-json</groupId>
             <artifactId>minimal-json</artifactId>
             <version>0.9.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.methvin</groupId>
+            <artifactId>directory-watcher</artifactId>
+            <version>0.16.1</version>
         </dependency>
     </dependencies>
 </project>
