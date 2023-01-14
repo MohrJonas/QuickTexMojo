@@ -29,6 +29,8 @@ class LatexCompiler : AbstractMojo() {
     private lateinit var texFolder: Path
     private lateinit var pdfFolder: Path
 
+    private val processes = mutableListOf<Process>()
+
     override fun execute() {
         checkCompiler()
         javaClassFolder = Path.of(project.build.outputDirectory)
@@ -42,8 +44,8 @@ class LatexCompiler : AbstractMojo() {
             val texFilePath = texFolder.resolve("${it.javaClass.canonicalName}.tex")
             Files.writeString(texFilePath, it.get().toString())
             texFilePath
-        }
-            .map { compileTex(it, pdfFolder) }
+        }.map { compileTex(it, pdfFolder) }
+        while (processes.any { it.isAlive }) Thread.sleep(10)
     }
 
     private fun loadDocument(name: String, loader: ClassLoader): Document {
@@ -69,10 +71,11 @@ class LatexCompiler : AbstractMojo() {
         log.info(compileRootPath.pathString)
         log.info(relativeTexFile.pathString.replace("\\", "/"))
         log.info(relativeOutPath.pathString)
-        ProcessBuilder(pdflatex, "-interaction=nonstopmode", "-output-directory", relativeOutPath.pathString, relativeTexFile.pathString.replace("\\", "/"))
-            .directory(compileRootPath.toFile())
-            .inheritIO()
-            .start()
+        processes.add(
+            ProcessBuilder(pdflatex, "-interaction", "nonstopmode", "-output-directory", relativeOutPath.pathString, relativeTexFile.pathString.replace("\\", "/")).directory(
+                compileRootPath.toFile()
+            ).inheritIO().start()
+        )
     }
 
     private fun findFileIndex(): Path {

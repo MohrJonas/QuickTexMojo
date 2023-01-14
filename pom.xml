@@ -4,7 +4,7 @@
 
     <artifactId>quick-tex-maven-plugin</artifactId>
     <groupId>mohr.jonas</groupId>
-    <version>1.0.10-SNAPSHOT</version>
+    <version>1.0.16-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>QuickTex Maven Plugin</name>
@@ -12,22 +12,19 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <kotlin.compiler.jvmTarget>17</kotlin.compiler.jvmTarget>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>private-repo</id>
-            <url>http://192.168.178.80:9000</url>
-        </repository>
-    </distributionManagement>
 
     <repositories>
         <repository>
             <id>mavenCentral</id>
             <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
@@ -120,11 +117,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>mohr.jonas</groupId>
-            <artifactId>QuickTex</artifactId>
-            <version>0.8.3</version>
+            <groupId>com.github.mohrjonas</groupId>
+            <artifactId>quicktex</artifactId>
+            <version>d1d15ec5eb</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.eclipsesource.minimal-json/minimal-json -->
         <dependency>
             <groupId>com.eclipsesource.minimal-json</groupId>
             <artifactId>minimal-json</artifactId>
@@ -133,7 +129,7 @@
         <dependency>
             <groupId>io.methvin</groupId>
             <artifactId>directory-watcher</artifactId>
-            <version>0.16.1</version>
+            <version>0.17.1</version>
         </dependency>
     </dependencies>
 </project>
