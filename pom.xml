@@ -4,7 +4,7 @@
 
     <artifactId>quick-tex-maven-plugin</artifactId>
     <groupId>mohr.jonas</groupId>
-    <version>1.0.16-SNAPSHOT</version>
+    <version>1.1.0</version>
     <packaging>maven-plugin</packaging>
 
     <name>QuickTex Maven Plugin</name>
@@ -130,6 +130,11 @@
             <groupId>io.methvin</groupId>
             <artifactId>directory-watcher</artifactId>
             <version>0.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>4.0.0-alpha-3</version>
         </dependency>
     </dependencies>
 </project>
